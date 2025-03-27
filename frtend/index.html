@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Excel File</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- ✅ Navbar Section -->
+  <div class="navbar">
+    <div class="left">👋 Welcome, Admin!</div>
+    <div class="right">
+      <button onclick="navigateTo('🌐 Home')">🌐 Home</button>
+      <button onclick="navigateTo('🏠 TMT')">🏠 TMT</button>
+      <button onclick="navigateTo('📥 Upload Excel')">📥 Upload Excel</button>
+      <button onclick="navigateTo('📊 PowerBI')">📊 Power BI</button>
+      <button onclick="navigateTo('👥 Team Credit')">👥 Team Credit</button>
+      <button 
+  onclick="logout()" 
+  style="
+    padding: 8px 15px;
+    background-color: #ffc107; /* Initial button color */
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  " 
+  onmouseover="this.style.backgroundColor='#dc3545'; this.style.color='white';" 
+  onmouseout="this.style.backgroundColor='#ffc107'; this.style.color='#333';"
+>
+  🚪 Logout
+</button>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>📊 Upload Excel File to SQL Database</h2>
+
+    <!-- Dropdown for Table Selection -->
+    <label for="table">Choose a Table:</label>
+    <select id="table" name="table">
+      <option value="[Resolved BPEM]">Resolved BPEM</option>
+      <option value="[Outstanding BPEM]">Outstanding BPEM</option>
+    </select>
+
+    <!-- File Upload Section -->
+    <input type="file" id="file" />
+    <button id="uploadButton" onclick="uploadFile()">📤 Upload File</button>
+
+    <!-- Loading Spinner -->
+    <div id="loading">
+      ⏳ Uploading... Please wait!
+    </div>
+
+    <!-- Progress Bar with Percentage -->
+    <div id="progressContainer">
+      <div id="progressBar">
+        <div id="progress"></div>
+      </div>
+      <div id="progressPercentage">0%</div>
+    </div>
+
+    <!-- Success/Error Message Display -->
+    <div id="message"></div>
+
+    <!-- Reset Fields Button -->
+    <button id="resetButton" onclick="resetForm()">🔄 Upload Another File</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

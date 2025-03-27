@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - Excel Upload</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f6f8; /* Updated Background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #ffffff; /* White Container */
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      width: 350px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 22px;
+    }
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 12px;
+      font-weight: bold;
+      color: #444;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    button {
+      background-color: #0a101b; /* Professional Blue */
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    button:hover {
+      background-color: #005f8b;
+    }
+    #loginMessage {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .forgot-password {
+      margin-top: 15px;
+    }
+    .forgot-password a {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .forgot-password a:hover {
+      text-decoration: underline;
+    }
+    /* ✅ Popup Styling */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 999;
+      width: 300px;
+      text-align: center;
+    }
+    .popup h3 {
+      margin-top: 0;
+      color: #333;
+      font-size: 18px;
+    }
+    .popup button {
+      background-color: #28a745; /* Green Button */
+      padding: 8px 16px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+    .popup button:hover {
+      background-color: #218838;
+    }
+    /* ✅ Overlay for Popup */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 998;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🔒 Login to Continue</h2>
+
+    <!-- ✅ Login Form -->
+    <form id="loginForm" onsubmit="validateLogin(event)">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required placeholder="Enter your username" />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required placeholder="Enter your password" />
+
+      <button type="submit">🔑 Login</button>
+    </form>
+
+    <div id="loginMessage"></div>
+
+    <!-- ✅ Forgot Password -->
+    <div class="forgot-password">
+      <a href="#" onclick="showForgotPasswordPopup()">Forgot Password?</a>
+    </div>
+  </div>
+
+  <!-- ✅ Forgot Password Popup -->
+  <div id="forgotPasswordPopup" class="popup">
+    <h3>🔐 Forgot Password?</h3>
+    <p>Please contact your administrator to reset your password.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+
+  <!-- ✅ Overlay to Dim Background -->
+  <div id="overlay" class="overlay"></div>
+
+  <script>
+    // ✅ Validate Login Credentials
+    function validateLogin(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // ✅ Simple static authentication
+      if (username === 'admin' && password === '1234') {
+        localStorage.setItem('isAuthenticated', 'true');
+        window.location.href = 'index.html'; // Redirect to upload page
+      } else {
+        showLoginMessage('❌ Invalid username or password', 'error');
+      }
+    }
+
+    // ✅ Show Error/Success Message
+    function showLoginMessage(msg, type) {
+      const messageBox = document.getElementById('loginMessage');
+      messageBox.innerHTML = msg;
+      messageBox.style.color = type === 'error' ? '#d9534f' : '#28a745';
+    }
+
+    // ✅ Show Forgot Password Popup
+    function showForgotPasswordPopup() {
+      document.getElementById('forgotPasswordPopup').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    // ✅ Close Popup
+    function closePopup() {
+      document.getElementById('forgotPasswordPopup').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

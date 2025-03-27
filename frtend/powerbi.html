@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>📊 Power BI Report</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: #4caf50;
+      overflow: hidden;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .navbar .left {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .navbar .right button {
+      padding: 8px 15px;
+      margin-left: 10px;
+      background-color: #fff;
+      color: #4caf50;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .navbar .right button:hover {
+      background-color: #e0e0e0;
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(1, 27, 21, 0.1);
+      text-align: center;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 8px;
+    }
+    .go-back-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .go-back-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar Section -->
+  <div class="navbar">
+    <div class="left">👋 Welcome, Admin!</div>
+    <div class="right">
+      <button onclick="navigateTo('🏠 TMT')">🏠 TMT</button>
+      <button onclick="navigateTo('📥 Upload Excel')">📥 Upload Excel</button>
+      <button onclick="navigateTo('📊 PowerBI')">📊 Power BI</button>
+      <button onclick="navigateTo('👥 Team Credit')">👥 Team Credit</button>
+      <button onclick="logout()">🚪 Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- <h2>📊 Power BI Embedded Report</h2> -->
+
+    <!-- Power BI Report Embed -->
+    <iframe 
+      src="https://app.fabric.microsoft.com/reportEmbed?reportId=fa50e9d0-c064-4b3f-9725-99362132370a&autoAuth=true&ctid=955a6b35-3844-4456-8fb6-7094c82f2f3c"
+      allowfullscreen="true"
+    ></iframe>
+
+    <!-- Go Back Button -->
+    <!-- <button class="go-back-btn" onclick="goBack()">🔙 Go Back</button> -->
+  </div>
+
+  <script>
+    // ✅ Navigate to Routes
+       
+       function navigateTo(route) {
+      if (route === '🏠 TMT') {
+        window.open('http://52.35.69.115/TMT/ui#/', '_blank');
+      } else if (route === '📥 Upload Excel') {
+        window.location.href = 'index.html';
+      } else if (route === '📊 PowerBI') {
+        window.location.href = 'powerbi.html';
+      } else if (route === '🌐 AWS') {
+        window.open('https://ap-south-1.console.aws.amazon.com/rds/home?region=ap-south-1#database:id=database-1;is-cluster=false;tab=monitoring', '_blank');
+      } else if (route === '👥 Team Credit') {
+        window.location.href = 'team.html';
+      }
+    }
+
+
+    // ✅ Go Back to Main Page
+    function goBack() {
+      window.location.href = 'index.html';
+    }
+
+    // ✅ Logout and Clear Session
+    function logout() {
+      localStorage.removeItem('isAuthenticated');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>
